@@ -43,11 +43,52 @@ Cov = (X_c'*X_c)/(n-1);                                                    % Det
 [E, D] = eig(Cov);                                                         % Use of function eig to find the m eigenvalues (diagonal values in D matrix) and 
                                                                            % m eigenvectors (columns of matrix E). 
 
+I_tot = trace(D);                                                          % Information of principal components from eigenvalues.
+I = 100*diag(D)/I_tot;                                          
+
 % ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+% Normalization in P space
 
+D_half = D^(-1/2);                                                         % Definition of inverse square root matrix of eigenvalues. 
 
+E_norm = E*D_half;                                                         % New eigenvectors in P space normalized. 
 
+P = X_c*E_norm;                                                            % Calculation of data in the new space.
+
+% ----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+% Building of correlation circle graph   
+
+lx = 1.3;                                                                  % Horizontal limits of plot. 
+ly = 1.3;                                                                  % Vertical limits of plot.
+E_norm_t = E_norm';
+figure;
+
+hold on;
+
+grid
+set(gcf,'position',[10,10,810,800]);
+plot([-lx lx],[0 0],Color="black");
+plot([0 0],[-ly ly],Color="black");
+xlabel("P1");
+ylabel("P2");
+text(1.08,0.05,append(sprintf('%.1f',I(m)),' %'));
+text(-0.05,1.08,append(sprintf('%.1f',I(m-1)),' %'),"Rotation",90);
+xlim([-lx lx]);
+ylim([-ly ly]);
+viscircles([0 0],1);
+biplot(E_norm_t(:,1:2),'VarLabels', ...
+    {'Month','','Latitude','Longitude','Engines','Height','Speed', ...
+    'Distance','Strucks','Mass'});
+
+hold off;
+
+% For export the graph to a png file, uncomment the next line   
+
+print('Correrlation_circle_P1-P2','-dpng');
+
+% ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
