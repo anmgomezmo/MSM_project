@@ -51,9 +51,7 @@ I = 100*diag(D)/I_tot;
 % Normalization in P space
 
 D_half = D^(-1/2);                                                         % Definition of inverse square root matrix of eigenvalues. 
-
 E_norm = E*D_half;                                                         % New eigenvectors in P space normalized. 
-
 P = X_c*E_norm;                                                            % Calculation of data in the new space.
 
 % ----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -61,8 +59,14 @@ P = X_c*E_norm;                                                            % Cal
 % Building of correlation circle graph   
 
 lx = 1.3;                                                                  % Horizontal limits of plot. 
-ly = 1.3;                                                                  % Vertical limits of plot.
-E_norm_t = E_norm';
+ly = 1.3;
+E_norm_t = E_norm';% Vertical limits of plot.
+
+
+% Plot of correlation circle in the first two main components
+
+P1 = m;
+P2 = m-1;
 figure;
 
 hold on;
@@ -73,8 +77,8 @@ plot([-lx lx],[0 0],Color="black");
 plot([0 0],[-ly ly],Color="black");
 xlabel("P1");
 ylabel("P2");
-text(1.08,0.05,append(sprintf('%.1f',I(m)),' %'));
-text(-0.05,1.08,append(sprintf('%.1f',I(m-1)),' %'),"Rotation",90);
+text(1.08,0.05,append(sprintf('%.1f',I(P1)),' %'));
+text(-0.05,1.08,append(sprintf('%.1f',I(P2)),' %'),"Rotation",90);
 xlim([-lx lx]);
 ylim([-ly ly]);
 viscircles([0 0],1);
@@ -85,8 +89,37 @@ biplot(E_norm_t(:,1:2),'VarLabels', ...
 hold off;
 
 % For export the graph to a png file, uncomment the next line   
-
 print('Correrlation_circle_P1-P2','-dpng');
+
+
+% Plot of correlation circle in the first two main components
+
+P3 = m-2;
+P4 = m-3;
+figure;
+
+hold on;
+
+grid
+set(gcf,'position',[10,10,810,800]);
+plot([-lx lx],[0 0],Color="black");
+plot([0 0],[-ly ly],Color="black");
+xlabel("P3");
+ylabel("P4");
+text(1.08,0.05,append(sprintf('%.1f',I(P3)),' %'));
+text(-0.05,1.08,append(sprintf('%.1f',I(P4)),' %'),"Rotation",90);
+xlim([-lx lx]);
+ylim([-ly ly]);
+viscircles([0 0],1);
+biplot(E_norm_t(:,3:4),'VarLabels', ...
+    {'','','','Longitude','Engines','Height','Speed', ...
+    'Distance','',''});
+
+hold off;
+
+% For export the graph to a png file, uncomment the next line   
+
+print('Correrlation_circle_P3-P4','-dpng');
 
 % ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
