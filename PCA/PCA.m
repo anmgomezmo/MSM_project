@@ -117,13 +117,63 @@ biplot(E_norm_t(:,3:4),'VarLabels', ...
 hold off;
 
 % For export the graph to a png file, uncomment the next line   
-
 print('Correrlation_circle_P3-P4','-dpng');
 
 % ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+% Plot of some variables in the P space 
 
+figure;
+set(gcf,'position',[10,10,800,1000]);
+tiledlayout(3,2);
 
+nexttile;
+scatter(P(:,1),P(:,2));
+xlim([-10 5]);
+xlabel("Inc\_Month");
+ylabel("Inc\_Year");
+grid;
+
+nexttile;
+scatter(P(:,3),P(:,4),MarkerEdgeColor='green');
+ylim([-10 15]);
+xlabel("Latitude");
+ylabel("Longitude");
+grid;
+
+nexttile;
+scatter(P(:,6),P(:,7),MarkerEdgeColor='red');
+xlim([-5 5]);
+ylim([-5 5]);
+xlabel("Height");
+ylabel("Speed");
+grid;
+
+nexttile;
+scatter(P(:,10),P(:,9),MarkerEdgeColor='magenta');
+ylim([-10 25]);
+xlabel("Ac\_Mass");
+ylabel("Num\_Strucks");
+grid;
+
+nexttile;
+scatter(P(:,5),P(:,9),MarkerEdgeColor='cyan');
+xlim([-20 10]);
+xlabel("Num\_Engines");
+ylabel("Num\_Strucks");
+grid;
+
+nexttile;
+scatter(P(:,8),P(:,9),MarkerEdgeColor='yellow');
+xlim([-15 10]);
+xlabel("Distances");
+ylabel("Num\_Strucks");
+grid;
+
+% For export the graph to a png file, uncomment the next line   
+print('2D_variables','-dpng');
+
+% ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
