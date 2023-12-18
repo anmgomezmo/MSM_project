@@ -6,11 +6,10 @@
 % look at "Column_names_explanation".
 
 % ----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-% Don't forget modify dataset file (remove original columns and set two sheets) 
+ 
 % Read and clean of dataset
 
-dataset = readmatrix("STRIKE_REPORTS.xlsx",Sheet="Useful_data");           % Use of readmatrix function to read data file into a numerical matrix.
+dataset = readmatrix("STRIKE_REPORTS.xlsx",Sheet="STRIKE_REPORTS");        % Use of readmatrix function to read data file into a numerical matrix.
 dataset(1,:) = [];                                                         % Remove the column names from matrix.           
 dataset = fillmissing(dataset,'constant',0);                               % Fill missing cells with zero.
 
@@ -59,8 +58,8 @@ P = X_c*E_norm;                                                            % Cal
 % Building of correlation circle graph   
 
 lx = 1.3;                                                                  % Horizontal limits of plot. 
-ly = 1.3;
-E_norm_t = E_norm';% Vertical limits of plot.
+ly = 1.3;                                                                  % Vertical limits of plot.  
+E_norm_t = E_norm';                                                        
 
 
 % Plot of correlation circle in the first two main components
