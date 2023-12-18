@@ -128,11 +128,55 @@ set(gcf,'position',[10,10,800,1000]);
 tiledlayout(3,2);
 
 nexttile;
-scatter(P(:,1),P(:,2));
-xlim([-10 5]);
-xlabel("Inc\_Month");
-ylabel("Inc\_Year");
+scatter(P(:,9),P(:,2));
+xlim([-10 25]);
+xlabel("Num\_Strucks");
+ylabel("Inc\_Month");
 grid;
+
+nexttile;
+scatter(P(:,9),P(:,4),MarkerEdgeColor='green');
+ylim([-10 15]);
+xlabel("Num\_Strucks");
+ylabel("Longitude");
+grid;
+
+nexttile;
+scatter(P(:,9),P(:,3),MarkerEdgeColor='red');
+xlim([-10 20]);
+xlabel("Num\_Strucks");
+ylabel("Latitude");
+grid;
+
+nexttile;
+scatter(P(:,9),P(:,10),MarkerEdgeColor='magenta');
+xlim([-10 25]);
+xlabel("Num\_Strucks");
+ylabel("Ac\_Mass");
+grid;
+
+nexttile;
+scatter(P(:,9),P(:,5),MarkerEdgeColor='cyan');
+ylim([-15 10]);
+xlabel("Num\_Strucks");
+ylabel("Num\_Engines");
+grid;
+
+nexttile;
+scatter(P(:,9),P(:,6),MarkerEdgeColor='yellow');
+ylim([-5 5]);
+xlabel("Num\_Strucks");
+ylabel("Height");
+grid;
+
+% For export the graph to a png file, uncomment the next line   
+print('2D_strikes-variables','-dpng');
+
+
+
+figure;
+set(gcf,'position',[10,10,800,1000]);
+tiledlayout(3,2);
 
 nexttile;
 scatter(P(:,3),P(:,4),MarkerEdgeColor='green');
@@ -150,24 +194,31 @@ ylabel("Speed");
 grid;
 
 nexttile;
-scatter(P(:,10),P(:,9),MarkerEdgeColor='magenta');
-ylim([-10 25]);
-xlabel("Ac\_Mass");
-ylabel("Num\_Strucks");
-grid;
-
-nexttile;
-scatter(P(:,5),P(:,9),MarkerEdgeColor='cyan');
-xlim([-20 10]);
-xlabel("Num\_Engines");
-ylabel("Num\_Strucks");
-grid;
-
-nexttile;
-scatter(P(:,8),P(:,9),MarkerEdgeColor='yellow');
+scatter(P(:,8),P(:,6),MarkerEdgeColor='magenta');
 xlim([-15 10]);
-xlabel("Distances");
-ylabel("Num\_Strucks");
+xlabel("Distance");
+ylabel("Height");
+grid;
+
+nexttile;
+scatter(P(:,5),P(:,6),MarkerEdgeColor='cyan');
+xlim([-15 10]);
+xlabel("Num\_Engines");
+ylabel("Height");
+grid;
+
+nexttile;
+scatter(P(:,1),P(:,3),MarkerEdgeColor='yellow');
+xlim([-10 5]);
+xlabel("Inc\_Month");
+ylabel("Latitude");
+grid;
+
+nexttile;
+scatter(P(:,1),P(:,4));
+ylim([-10 15]);
+xlabel("Inc\_Month");
+ylabel("Longitude");
 grid;
 
 % For export the graph to a png file, uncomment the next line   
