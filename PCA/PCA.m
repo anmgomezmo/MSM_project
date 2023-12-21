@@ -37,7 +37,7 @@ X_c = (dataset-x_var)./x_std;                                              % Def
 
 % Covariance matrix and eigenvalue problem 
 
-Cov = (X_c'*X_c)/(n-1);                                                    % Determination of covariant matrix. 
+Cov = (X_c'*X_c)/(n-1);                                                    % Determination of covariance matrix. 
 
 [E, D] = eig(Cov);                                                         % Use of function eig to find the m eigenvalues (diagonal values in D matrix) and 
                                                                            % m eigenvectors (columns of matrix E). 
