@@ -44,7 +44,7 @@ n_0 = [8000000; 100000; 1000; 5000; 250000];
 
 % ----------------------------------------------------------------------------------------------------------------------------------------------------------
  
-% Evolution of vector population in time from 2016 (economic crisis) to 2022 
+% Evolution of vector population in time from 2016 (economic crisis) to 2022 in steps of 1 year 
 
 n = n_0;
 H = [n];                                                                   % History matrix with each column the new population state from left to right.
@@ -79,7 +79,7 @@ hold off;
 legend({'Venezuela','Colombia','Guatemala','Mexico','United States'},Location="north");
 
 % For export the graph to a png file, uncomment the next line   
-print('Migration_evolution','-dpng');
+%print('Migration_evolution','-dpng');
 
 % For 2022, population obtained for United States, Guatemala and Colombia 
 % through Markov chain model is closed to oficial statistic of those
@@ -123,20 +123,37 @@ hold off;
 legend({'Venezuela','Colombia','Guatemala','Mexico','United States'},Location="north");
 
 % For export the graph to a png file, uncomment the next line   
-print('Migration_evolution_2030','-dpng');
+%print('Migration_evolution_2030','-dpng');
 
 % Forecast of migration until 2030 may don't be accurate, due to diverse 
 % variables or unexpected events in migration politics of countries.
-% However, model stabilizes closed to the year 2150, something impossible
+% However, model stabilizes closed to the year 2120, something impossible
 % to be agree with the real problem.
 
+% ----------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+% Fundamental matrix and Absortion matrix
 
+Q = M(1:4,1:4);
+R = M(5,1:4);
 
+F = inv(eye(4)-Q);                                                         % Fundamental matrix defined from Q. 
+A = R*F;                                                                   % Absortion matrix with all entries equal to 1.
 
+% For this case, time matrix T is the same fundamental matrix F, because by
+% definition T=F*dt and dt=1 year.
 
+% ----------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+% Regular process 
 
+D = sort(eig(M),2);                                                        % Determination of eigenvalues (D) and eigenvectors (E) of matrix M.
 
+dt = 1;                                                                    % in years.
 
+T_half = -log(2)/log(abs(D(2)))*dt;                                        % Time after which the distance is divided by two, in years.
+
+% ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
