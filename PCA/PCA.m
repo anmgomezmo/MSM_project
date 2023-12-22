@@ -88,7 +88,7 @@ biplot(E_norm_t(:,1:2),'VarLabels', ...
 hold off;
 
 % For export the graph to a png file, uncomment the next line   
-print('Correrlation_circle_P1-P2','-dpng');
+%print('Correrlation_circle_P1-P2','-dpng');
 
 
 % Plot of correlation circle in the first two main components
@@ -117,7 +117,7 @@ biplot(E_norm_t(:,3:4),'VarLabels', ...
 hold off;
 
 % For export the graph to a png file, uncomment the next line   
-print('Correrlation_circle_P3-P4','-dpng');
+%print('Correrlation_circle_P3-P4','-dpng');
 
 % ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -170,7 +170,7 @@ ylabel("Height");
 grid;
 
 % For export the graph to a png file, uncomment the next line   
-print('2D_strikes-variables','-dpng');
+%print('2D_strikes-variables','-dpng');
 
 
 
@@ -222,7 +222,7 @@ ylabel("Longitude");
 grid;
 
 % For export the graph to a png file, uncomment the next line   
-print('2D_variables','-dpng');
+%print('2D_variables','-dpng');
 
 % ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
