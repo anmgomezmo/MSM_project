@@ -36,7 +36,7 @@ M = [1-Pvc 0 0 0 0;
  
 % Definition of population vector (V,C,G,M,U)
 
-n = [8000000; 100000; 1000; 5000; 250000];                                       
+n_0 = [8000000; 100000; 1000; 5000; 250000];                                       
   
 % Initial inmigrant population of venezuelans in each country in 2016. 
 % That values are closed to real inmigration data from diferent
@@ -46,6 +46,7 @@ n = [8000000; 100000; 1000; 5000; 250000];
  
 % Evolution of vector population in time from 2016 (economic crisis) to 2022 
 
+n = n_0;
 H = [n];                                                                   % History matrix with each column the new population state from left to right.
 T = [2016];                                                                % History of time steps.
 for i=2017:2022
@@ -84,7 +85,50 @@ print('Migration_evolution','-dpng');
 % through Markov chain model is closed to oficial statistic of those
 % countries. 
 
+% ----------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+% Forecast of migrating population for the next decades  
 
+n = n_0;
+Hf = [n];                                                                   % History matrix with each column the new population state from left to right.
+Tf = [2016];                                                                % History of time steps.
+for i=2017:2030
+    nt = M*n;
+    n = nt;
+    Hf = [Hf nt];
+    Tf = [Tf i];
+end
+
+% ----------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+% Graphs of states for coming years
+
+figure;
+set(gcf,'position',[10,10,1200,800]);
+
+hold on;
+
+plot(Tf,Hf(1,:));
+plot(Tf,Hf(2,:));
+plot(Tf,Hf(3,:));
+plot(Tf,Hf(4,:));
+plot(Tf,Hf(5,:));
+xline(2022);
+xlabel('Time (years)');
+ylabel('Population (millions)');
+grid;
+
+hold off;
+
+legend({'Venezuela','Colombia','Guatemala','Mexico','United States'},Location="north");
+
+% For export the graph to a png file, uncomment the next line   
+print('Migration_evolution_2030','-dpng');
+
+% Forecast of migration until 2030 may don't be accurate, due to diverse 
+% variables or unexpected events in migration politics of countries.
+% However, model stabilizes closed to the year 2150, something impossible
+% to be agree with the real problem.
 
 
 
